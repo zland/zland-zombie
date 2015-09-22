@@ -1,0 +1,13 @@
+{
+  "name": "Zombie",
+  "resolveAlias": "zombie",
+  "author": "Florian Biewald",
+  "spot": {
+    "name": "zombie",
+    "componentFactory": "components/Factory",
+    "generator": "Generator"
+  },
+  "canvasStores": [
+    "stores/ZombieStore"
+  ]
+}

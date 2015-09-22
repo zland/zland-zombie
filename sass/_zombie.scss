@@ -1,0 +1,63 @@
+/**
+ * Copyright 2015 Florian Biewald
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+
+$margin-top: 0px;
+$torso-height: 20px;
+
+@import "arm";
+@import "leg";
+
+
+@mixin zombie($z-index) {
+    position: absolute;
+    // -webkit-transform: rotate(30deg);
+    .torso {
+        width: 50px;
+        height: $torso-height;
+        margin-top: 20px;
+        display: inline-block;
+        background-color: red;
+        z-index: $z-index;
+        .head {
+            margin: 0 auto;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            z-index: $z-index;
+            background-color: grey;
+            position: relative;
+        }
+    }
+    .arm-left {
+        @include arm(left, $margin-top)
+    }
+    .arm-right {
+        @include arm(right, $margin-top)
+    }
+    .leg-left {
+        @include leg(left, $z-index - 1, $margin-top)
+    }
+    .leg-right {
+        @include leg(right, $z-index - 1, $margin-top)
+    }
+
+    &.dead {
+        .torso, .head, .arm-left, .arm-right {
+            background-color: grey !important;
+        }
+    }
+}
